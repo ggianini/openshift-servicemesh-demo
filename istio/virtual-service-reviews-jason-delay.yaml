@@ -10,6 +10,11 @@ spec:
     - headers:
         end-user:
           exact: jason
+    fault:
+      delay:
+        fixedDelay: 2s
+        percentage:
+          value: 100.0
     route:
     - destination:
         host: reviews
