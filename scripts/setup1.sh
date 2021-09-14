@@ -2,46 +2,46 @@
 echo ""
 echo "USE PROJECT"
 echo ""
-oc project user1-istio-system
+oc project user2-istio-system
 
-oc create -n user1-istio-system -f -<<EOF
+oc create -n user2-istio-system -f -<<EOF
 apiVersion: maistra.io/v1
 kind: ServiceMeshMemberRoll
 metadata:
   name: default
-  namespace: user1-istio-system 
+  namespace: user2-istio-system 
 spec:
   members:
-    - user1-bookinfo 
-    - user1-catalog
-    - user1-inventory
+    - user2-bookinfo 
+    - user2-catalog
+    - user2-inventory
 EOF
 
 
 echo ""
 echo "CREATE BOOKINFO APP"
 echo ""
-oc apply -n user1-bookinfo -f istio/bookinfo.yaml
+oc apply -n user2-bookinfo -f istio/bookinfo.yaml
 echo ""
 echo "CREATE GATEWAY"
 echo ""
-oc apply -n user1-bookinfo -f istio/bookinfo-gateway.yaml
+oc apply -n user2-bookinfo -f istio/bookinfo-gateway.yaml
 echo "route url:"
-export BOOK_URL=$(oc get routes -n user1-istio-system | grep istio-ingressgateway | awk  '{print $2}')
-echo istio-ingressgateway-user1-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com
+export BOOK_URL=$(oc get routes -n user2-istio-system | grep istio-ingressgateway | awk  '{print $2}')
+echo istio-ingressgateway-user2-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com
 echo ""
 echo "CREATE DESTINATION RULES"
 echo ""
-oc apply -n user1-bookinfo -f istio/destination-rule-all.yaml
+oc apply -n user2-bookinfo -f istio/destination-rule-all.yaml
 echo ""
 echo "SHOW DESTINATION RULES"
 echo ""
-oc get -n user1-bookinfo destinationrules
+oc get -n user2-bookinfo destinationrules
 echo ""
 echo "ADD LABELS"
 echo ""
 
-oc project user1-bookinfo && \
+oc project user2-bookinfo && \
 oc label deployment/productpage-v1 app.openshift.io/runtime=python --overwrite && \
 oc label deployment/details-v1 app.openshift.io/runtime=ruby --overwrite && \
 oc label deployment/reviews-v1 app.openshift.io/runtime=java --overwrite && \
@@ -62,16 +62,16 @@ echo ""
 echo "CHECK ROLLOUTS"
 echo ""
 
-oc rollout status -n user1-bookinfo -w deployment/productpage-v1 && \
-oc rollout status -n user1-bookinfo -w deployment/reviews-v1 && \
-oc rollout status -n user1-bookinfo -w deployment/reviews-v2 && \
-oc rollout status -n user1-bookinfo -w deployment/reviews-v3 && \
-oc rollout status -n user1-bookinfo -w deployment/details-v1 && \
-oc rollout status -n user1-bookinfo -w deployment/ratings-v1
+oc rollout status -n user2-bookinfo -w deployment/productpage-v1 && \
+oc rollout status -n user2-bookinfo -w deployment/reviews-v1 && \
+oc rollout status -n user2-bookinfo -w deployment/reviews-v2 && \
+oc rollout status -n user2-bookinfo -w deployment/reviews-v3 && \
+oc rollout status -n user2-bookinfo -w deployment/details-v1 && \
+oc rollout status -n user2-bookinfo -w deployment/ratings-v1
 
 echo ""
 echo "CHECK PODS"
 echo ""
 
-oc get pods -n user1-bookinfo --selector app=reviews
+oc get pods -n user2-bookinfo --selector app=reviews
 
