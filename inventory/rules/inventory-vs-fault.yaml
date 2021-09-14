@@ -4,7 +4,7 @@ metadata:
   name: inventory-fault
 spec:
   hosts:
-  - "istio-ingressgateway-user1-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com"
+  - istio-ingressgateway-user1-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com
   gateways:
   - user1-bookinfo/bookinfo-gateway
   http:

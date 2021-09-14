@@ -28,7 +28,7 @@ echo ""
 oc apply -n user1-bookinfo -f istio/bookinfo-gateway.yaml
 echo "route url:"
 export BOOK_URL=$(oc get routes -n user1-istio-system | grep istio-ingressgateway | awk  '{print $2}')
-echo $BOOK_URL
+echo istio-ingressgateway-user1-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com
 echo ""
 echo "CREATE DESTINATION RULES"
 echo ""
