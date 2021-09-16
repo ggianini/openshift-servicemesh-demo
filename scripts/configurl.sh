@@ -1,5 +1,5 @@
 #!/bin/sh
-export BOOK_URL=$(oc get routes -n user1-istio-system | grep istio-ingressgateway | awk  '{print $2}')
+export BOOK_URL=$(oc get routes -n user2-istio-system | grep istio-ingressgateway | awk  '{print $2}')
 if [ -z "$BOOK_URL" ]
 then
 echo "\$BOOK_URL is empty"

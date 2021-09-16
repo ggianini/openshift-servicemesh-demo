@@ -4,6 +4,10 @@ metadata:
   name: cb
 spec:
   host: productpage
+  subsets:
+    - labels:
+        version: v1
+      name: v1
   trafficPolicy:
     connectionPool:
       tcp:

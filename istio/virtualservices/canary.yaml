@@ -10,8 +10,8 @@ spec:
    - destination:
        host: reviews
        subset: v2
-     weight: 20
+     weight: 5
    - destination:
        host: reviews
        subset: v1
-     weight: 80
+     weight: 95
