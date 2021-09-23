@@ -4,9 +4,9 @@ metadata:
   name: catalog-default
 spec:
   hosts:
-  - "istio-ingressgateway-user2-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com"
+  - "istio-ingressgateway-user1-istio-system.apps.cluster-2mjtq.2mjtq.sandbox1105.opentlc.com"
   gateways:
-  - user2-bookinfo/bookinfo-gateway
+  - user1-bookinfo/bookinfo-gateway
   http:
     - match:
         - uri:

@@ -6,4 +6,3 @@ echo "\$BOOK_URL is empty"
 else
 find /home/demo/openshift-servicemesh-demo/* -type f -name "*.yaml" -exec sed -i "s/istio-ingressgateway-user1-istio-system.apps.cluster-jwn6r.jwn6r.sandbox1508.opentlc.com/$BOOK_URL/g" {} \;
 fi
-find /home/demo/openshift-servicemesh-demo/* -type f -name "*.yaml" -exec sed -i "s/user1/user1/g" {} \;

@@ -15,6 +15,9 @@ metadata:
   name: reviews
 spec:
   host: reviews
+#  trafficPolicy:
+#    loadBalancer:
+#      simple: RANDOM
   subsets:
   - name: v1
     labels:
